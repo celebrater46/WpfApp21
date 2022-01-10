@@ -4,9 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp21"
+        xmlns:cef="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Simple Browser" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <cef:ChromiumWebBrowser x:Name="browser" Grid.RowSpan="2" Grid.ColumnSpan="3"/>
+        <DockPanel x:Name="naviPanel" Grid.Column="1" LastChildFill="False" Opacity="0.8">
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Left">
+                <Button x:Name="back" Content="←" Margin="5" Padding="5,0"/>
+                <Button x:Name="forward" Content="→" Margin="0,5,5,5" Padding="5,0"/>
+            </StackPanel>
+            <Button x:Name="go" Content="Go" DockPanel.Dock="Right" Margin="5" Padding="10,0" IsDefault="true" Click="GoButton_OnClick"/>
+            <TextBox x:Name="address" Margin="0,5"/>
+        </DockPanel>
     </Grid>
 </Window>

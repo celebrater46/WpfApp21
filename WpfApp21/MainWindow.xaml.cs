@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using CefSharp.Internals;
 
 namespace WpfApp21
 {
@@ -23,6 +24,34 @@ namespace WpfApp21
         public MainWindow()
         {
             InitializeComponent();
+
+            InitBrowser();
+        }
+
+        private void InitBrowser()
+        {
+            naviPanel.DataContext = browser;
+            back.Command = browser.BackCommand;
+            forward.Command = browser.ForwardCommand;
+
+            browser.BrowserSettings.AcceptLanguageList = "en-EN";
+        }
+
+        private void GoButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(address.Text))
+            {
+                return;
+            }
+
+            if (browser.IsLoaded)
+            {
+                browser.Load(address.Text);
+            }
+            else
+            {
+                browser.Address = address.Text;
+            }
         }
     }
 }
