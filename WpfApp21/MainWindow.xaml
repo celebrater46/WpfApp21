@@ -25,7 +25,7 @@
                 <Button x:Name="forward" Content="→" Margin="0,5,5,5" Padding="5,0"/>
             </StackPanel>
             <Button x:Name="go" Content="Go" DockPanel.Dock="Right" Margin="5" Padding="10,0" IsDefault="true" Click="GoButton_OnClick"/>
-            <TextBox x:Name="address" Margin="0,5"/>
+            <TextBox x:Name="address" Margin="0,5" Width="373"/>
         </DockPanel>
     </Grid>
 </Window>
